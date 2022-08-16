@@ -2,9 +2,10 @@
     display: flex;
     background-color: #001c59;
     justify-content: space-between;
+    padding: 1em;
 }
 h3 {
-    color: white;
+    color: #fff;
     justify-content: center;
     align-items: center;
     padding: 1em;
@@ -13,22 +14,22 @@ h3 {
 
 .list {
     display: flex;
-    justify-content: space-between;
-    padding: 1em;
+    list-style: none;
+    align-items: center;
 }
 
 .item {
     margin-right: 1em;
-    list-style: none;
+    
 }
 
 .item a {
-    color: white;
+    color: #fff;
     text-decoration: none;
     
 
 }
 
 .item a:hover {
-    color: #fb3;
+    color: #dce123;
 }
