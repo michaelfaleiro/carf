@@ -1,0 +1,24 @@
+{
+  "cotacao": [
+    {
+      "carro": "Corsa",
+      "chassi": "mfx8717",
+      "id": 1
+    },
+    {
+      "carro": "Fusion",
+      "chassi": "4846mmichael4564",
+      "id": 2
+    },
+    {
+      "carro": "Gol",
+      "chassi": "12345678901234567",
+      "id": 3
+    },
+    {
+      "carro": "Fusca",
+      "chassi": "456asfsaf",
+      "id": 4
+    }
+  ]
+}
