@@ -16,11 +16,8 @@ const Cotacao = () => {
   }
 
   useEffect(() => {
-    fetch("http://localhost:5000/cotacao", {
+    fetch("http://localhost:3000/carros", {
       method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
     })
       .then((resp) => resp.json())
       .then((data) => {

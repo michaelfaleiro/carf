@@ -1,4 +1,3 @@
-
 import { useNavigate } from "react-router-dom";
 import CotacaoForm from "../../components/cotacao/CotacaoForm";
 import styles from "./NovaCotacao.module.css";
@@ -6,9 +5,8 @@ import styles from "./NovaCotacao.module.css";
 const NovaCotacao = () => {
   const navigate = useNavigate();
 
-
   function createPost(cotacao) {
-    fetch("http://localhost:5000/cotacao", {
+    fetch("http://localhost:3000/carros", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -18,12 +16,12 @@ const NovaCotacao = () => {
       .then((resp) => resp.json())
       .then((data) => {
         console.log(data);
-        navigate('/cotacao', {state:{message:'Projeto criado com sucesso!'}})
-        
+        navigate("/cotacao", {
+          state: { message: "Projeto criado com sucesso!" },
+        });
       })
       .catch((err) => console.log(err));
-     
-    }
+  }
 
   return (
     <div className={styles.novacotacao_container}>
