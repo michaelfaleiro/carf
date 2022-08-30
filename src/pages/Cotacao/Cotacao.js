@@ -1,18 +1,32 @@
 import { useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+
+import Loading from "../../components/Layout/Loading";
 import Message from "../../components/Layout/Message";
 import styles from "./Cotacao.module.css";
 import Container from "../../components/Layout/Container";
 import LinkButton from "../../components/Layout/LinkButton";
 import CotacaoCard from "../../components/cotacao/CotacaoCard";
-import { useState, useEffect } from "react";
 
 const Cotacao = () => {
   const location = useLocation();
   const [cotacoes, setCotacoes] = useState([]);
+  const [removeLoading, setRemoveLoading] = useState(false);
 
   let message = "";
   if (location.state) {
     message = location.state.message;
+  }
+
+  function removeCotacao(id) {
+    fetch(`http://localhost:3000/carros/${id}`, {
+      method: "DELETE",
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        setCotacoes(cotacoes.filter((cotacao) => cotacao.id !== id));
+      })
+      .catch((err) => console.log(err));
   }
 
   useEffect(() => {
@@ -23,6 +37,7 @@ const Cotacao = () => {
       .then((data) => {
         console.log(data);
         setCotacoes(data);
+        setRemoveLoading(true);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -42,8 +57,10 @@ const Cotacao = () => {
               carro={cotacoes.carro}
               chassi={cotacoes.chassi}
               key={cotacoes.id}
+              handleRemove={removeCotacao}
             />
           ))}
+        {!removeLoading && <Loading />}
       </Container>
     </div>
   );

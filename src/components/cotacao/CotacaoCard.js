@@ -1,9 +1,14 @@
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import { BsPencil, BsFillTrashFill } from "react-icons/bs";
 
 import styles from "./CotacaoCard.module.css";
 
 const CotacaoCard = ({ id, carro, chassi, handleRemove }) => {
+  const remove = (e) => {
+    e.preventDefault();
+    handleRemove(id);
+  };
+
   return (
     <div className={styles.cotacao_card}>
       <h4>{carro}</h4>
@@ -18,10 +23,10 @@ const CotacaoCard = ({ id, carro, chassi, handleRemove }) => {
         <span>Chassi: </span> {chassi}
       </p>
       <div className={styles.cotacao_card_actions}>
-        <Link to={`cotacao/${id}`}>
+        <Link to={`/cotacao/${id}`}>
           <BsPencil /> Editar
         </Link>
-        <button>
+        <button onClick={remove}>
           <BsFillTrashFill /> Excluir
         </button>
       </div>
