@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 import Loading from "../../components/Layout/Loading";
 import Message from "../../components/Layout/Message";
@@ -19,27 +20,16 @@ const Cotacao = () => {
   }
 
   function removeCotacao(id) {
-    fetch(`http://localhost:3000/carros/${id}`, {
-      method: "DELETE",
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        setCotacoes(cotacoes.filter((cotacao) => cotacao.id !== id));
-      })
-      .catch((err) => console.log(err));
+    axios.delete(`http://localhost:3000/carros/${id}`).then(() => {
+      setCotacoes(cotacoes.filter((cotacao) => cotacao.id !== id));
+    });
   }
 
   useEffect(() => {
-    fetch("http://localhost:3000/carros", {
-      method: "GET",
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        console.log(data);
-        setCotacoes(data);
-        setRemoveLoading(true);
-      })
-      .catch((err) => console.log(err));
+    axios.get("http://localhost:3000/carros").then((resp) => {
+      setCotacoes(resp.data);
+      setRemoveLoading(true);
+    });
   }, []);
 
   return (
